@@ -21,7 +21,7 @@ def normalize(frame: np.ndarray) -> np.ndarray:
 def infer_rvm_frame(weight: str = "rvm_mobilenetv3_fp32.onnx",
                     img_path: str = "test.jpg",
                     output_path: str = "test_onnx.jpg"):
-    sess = ort.InferenceSession(f'./checkpoint/{weight}')
+    sess = ort.InferenceSession(f'./checkpoint/{weight}', providers=['CUDAExecutionProvider'])
     print(f"Load checkpoint/{weight} done!")
 
     for _ in sess.get_inputs():
@@ -58,7 +58,7 @@ def infer_rvm_frame(weight: str = "rvm_mobilenetv3_fp32.onnx",
 def infer_rvm_video(weight: str = "rvm_mobilenetv3_fp32.onnx",
                     video_path: str = "./demo/1917.mp4",
                     output_path: str = "./demo/1917_onnx.mp4"):
-    sess = ort.InferenceSession(f'./checkpoint/{weight}')
+    sess = ort.InferenceSession(f'./checkpoint/{weight}', providers=['CUDAExecutionProvider'])
     print(f"Load checkpoint/{weight} done!")
 
     for _ in sess.get_inputs():
