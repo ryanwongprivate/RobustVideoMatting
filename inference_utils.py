@@ -62,7 +62,7 @@ class ImageReader(Dataset):
         return 1
 
     def __getitem__(self, idx):
-        with Image.open(self.path) as img:
+        with Image.open(self.path).convert('RGB') as img:
             img.load()
         if self.transform is not None:
             return self.transform(img)
