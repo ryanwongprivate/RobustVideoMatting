@@ -37,3 +37,12 @@ def converter():
     except ModuleNotFoundError as error:
         print(error)
         print('Please run "pip install av tqdm pims"')
+
+
+def converter_bg():
+    try:
+        from inference_bg import convert_video
+        return convert_video
+    except ModuleNotFoundError as error:
+        print(error)
+        print('Please run "pip install av tqdm pims"')
