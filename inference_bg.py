@@ -88,11 +88,12 @@ def convert_video(model,
     audio_source = None
     if os.path.isfile(input_source):
         container = av.open(input_source)
-        audio_streams = container.streams.audio
-        if len(audio_streams) > 0:
-            audio_stream = container.streams.get(audio=0)
-            if audio_stream is not None:
-                audio_source = container.streams.get(audio=0)[0]
+        if container.streams is not None:
+            audio_streams = container.streams.audio
+            if len(audio_streams) > 0:
+                audio_stream = container.streams.get(audio=0)
+                if audio_stream is not None:
+                    audio_source = container.streams.get(audio=0)[0]
 
     # Initialize writers
     if output_type == 'video':
